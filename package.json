@@ -1,0 +1,25 @@
+{
+  "name": "bellabeansbot",
+  "version": "1.0.0",
+  "description": "Bella Beans Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/bot.js",
+    "dev": "nodemon ./src/bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bradenbertrand/BellaBeansDiscordBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bradenbertrand/BellaBeansDiscordBot/issues"
+  },
+  "homepage": "https://github.com/Bradenbertrand/BellaBeansDiscordBot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.0",
+    "dotenv": "^8.2.0"
+  }
+}
