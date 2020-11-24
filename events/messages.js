@@ -41,6 +41,8 @@ function BellaBeansResponse(message) {
         parseCommand(message); //more like handle command
     } else if (message.content.toLowerCase().startsWith("bella motto")) {
         bellaSelfEdit(message.content.toLowerCase(), message.channel);
+    } else if (message.content.toLowerCase().startsWith("bella help")) {
+        message.channel.send("Here are the possible commands \n Bella Help \n Bella who is (person) \n Bella Motto")
     }
 }
 
@@ -50,15 +52,15 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 // Sends a message, then edits itself to write out BBB
 async function bellaSelfEdit(message, channel) {
     //Send "bella"
-    channel.send('Bella').then(async(sentMessage) => {
+    channel.send(':b:ella').then(async(sentMessage) => {
         //Wait 1 second
         await sleep(1222);
         //Edit the message to "Beans"
-        sentMessage.edit("Bella Beans").then(async(sentMessage) => {
+        sentMessage.edit(":b:ella :b:eans").then(async(sentMessage) => {
             //Wait 1 second
             await sleep(1222);
             //Edit the message to "Bonstruction"
-            sentMessage.edit("Bella Beans Bonstruction");
+            sentMessage.edit(":b:ella :b:eans :b:onstruction");
         });
     });
 }
