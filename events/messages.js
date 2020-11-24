@@ -11,7 +11,7 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        if (messageText.substring(0, 2) === "b!" || messageText.includes("bbbot", 0) && message.author.id !== client.user.id) {
+        if (messageText.substring(0, 2) === "b!" || messageText.includes("bbbot", 0)) {
             console.log(messageText);
             console.log("This message is for the bot!");
             BellaBeansResponse(messageText, messageChannel);
