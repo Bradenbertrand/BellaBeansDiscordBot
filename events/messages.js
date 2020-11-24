@@ -34,9 +34,9 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 async function bellaSelfEdit(message) {
     if (message.content.toLowerCase() === 'b!motto') {
-        message.channel.send('Bella').then((sentMessage) => {
+        message.channel.send('Bella').then(async(sentMessage) => {
             await sleep(1000);
-            sentMessage.edit("Beans").then(sentMessage => {
+            sentMessage.edit("Beans").then(async(sentMessage) => {
                 await sleep(1000);
                 sentMessage.edit("Bonstruction");
             });
