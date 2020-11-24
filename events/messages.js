@@ -2,7 +2,6 @@
 
 //This module is exported to bot.js
 //All message response related functions should be run from the messageHandler function
-//If function is not triggered by the message, should return false.
 
 require("../src/bot");
 const https = require('https');
@@ -13,11 +12,9 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        if (messageText.substring(0, 5) === "bella" || "bella beans") {
+        //If message starts with bella or bella beans
+        if (messageText.starsWith("bella")) {
             BellaBeansResponse(message);
-        } else if (messageText.includes("bbbot", 0)) {
-            console.log("Heard My Name");
-            heardMyName(messageText, messageChannel);
         } else {
             //Do Nothing if message wasnt meant for me :(
         }
@@ -34,7 +31,6 @@ function BellaBeansResponse(message) {
         message.channel.send('I heard my name!');
         // If the message is 'beans'
     } else if (message.content.toLowerCase().startsWith("bella who is")) {
-        console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
     } else if (message.content.toLowerCase().startsWith("bella motto")) {
         bellaSelfEdit(message.content.toLowerCase(), message.channel);
@@ -48,6 +44,7 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 // Sends a message, then edits itself to write out BBB
 async function bellaSelfEdit(message, channel) {
+    console.log("Bella Beans Motto");
     //Send "bella"
     channel.send(':b:ella').then(async(sentMessage) => {
         //Wait 1 second
@@ -63,26 +60,17 @@ async function bellaSelfEdit(message, channel) {
 }
 
 
-// Will trigger if the message contains bbbot
-function heardMyName(message, channel) {
-    //send "I heard my name" to the same channel
-    channel.send("I heard my name!");
-}
-
-
-
-//
 function parseCommand(message) {
     let command = message.content.toLowerCase().substring(6);
     //find out more about a person
     // console.log(command);
     if (command.toLowerCase().startsWith("who is")) {
-        console.log("sending to find person");
         findPerson(message, command);
     }
 }
 
 function findPerson(message, command) {
+    console.log("finding person:");
     //probably bad practice to just count out how long the command is lol
     let person = fixName(command.substring(7));
     console.log(person);
@@ -109,8 +97,6 @@ function findPerson(message, command) {
             about = about.split(". ");
             let res = about[0] + ".\n\n" + about[1] + ".";
             //why tf doesn't this work? it says res is undefined???
-            console.log(res)
-                // Probably shouldn't do this because if it says undefined anywhere itll break lol
             if (res.startsWith(".") && res.endsWith("undefined.")) {
                 message.channel.send("Sorry, I couldn't find them!")
             } else {
