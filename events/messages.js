@@ -30,7 +30,7 @@ function BellaBeansResponse(message, channel) {
     // If the message is "bella"
     if (message === 'b!bella') {
         // Send "Beans" to the same channel
-        channel.send(' /`/`/`css BELLA /`/`/` ');
+        channel.send(' ```css BELLA ``` ');
         // If the message is 'beans'
     } else if (message === 'b!beans') {
         channel.send('Bonstruction');
