@@ -113,7 +113,7 @@ function findPerson(message, command) {
             let res = about[0] + ".\n\n" + about[1] + ".";
             //why tf doesn't this work? it says res is undefined???
             console.log(res)
-            if (res === undefined) {
+            if (res.includes("undefined.")) {
                 message.channel.send("Sorry, I couldn't find them!")
             } else {
                 message.channel.send(res);
