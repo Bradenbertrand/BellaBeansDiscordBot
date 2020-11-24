@@ -1,5 +1,3 @@
-BellaBeansDiscordBot
-=======
 <h1>Bella Beans Discord Bot</h1>
 
 <h2>Dependencies</h2>
