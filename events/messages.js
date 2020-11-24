@@ -5,6 +5,7 @@
 //If function is not triggered by the message, should return false.
 
 require("../src/bot");
+const https = require('https');
 
 module.exports = {
     messageHandler: function messageHandler(message) {
@@ -34,7 +35,11 @@ function BellaBeansResponse(message, channel) {
         // If the message is 'beans'
     } else if (message === 'beans') {
         channel.send('Bonstruction');
-    } else {
+    }
+    else if(message.content.toLowerCase().startsWith("bella")){
+        parseCommand(message); //more like handle command
+    } 
+    else {
         // Do Nothing
     }
 }
@@ -70,4 +75,73 @@ function heardMyName(message, channel) {
         //send "I heard my name" to the same channel
         channel.send("I heard my name!");
     }
+}
+
+
+//
+function parseCommand(message){
+    let command = message.content.toLowerCase().substring(6);
+    //find out more about a person
+    // console.log(command);
+    if(command.toLowerCase().startsWith("who is")){
+        findPerson(message, command);
+    }
+}
+
+function findPerson(message, command){
+    //probably bad practice to just count out how long the command is lol
+    let person = fixName(command.substring(7));
+    // console.log(person);
+
+    //wikipedia json formatted data
+    let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + person;
+    https.get(url, function(response){
+        let data = "";
+        response.on("data", function(chunk){
+            data+=chunk;
+        });
+
+        response.on("end", function(){
+            //grab the first two sentences about the person
+            //not perfect, what if a period is used say with a term like jr.
+            let pages = JSON.parse(data).query.pages;
+            // console.log(pages);
+            let about = "";
+            for(property in pages){
+                if(pages[property].hasOwnProperty("pageid")){
+                    about = pages[property].extract;
+                }
+            }
+            about = about.split(". ");
+            let res = about[0]+".\n\n" + about[1]+".";
+            //why tf doesn't this work? it says res is undefined???
+            // console.log(String(res));
+            message.channel.send(res);
+        });
+    }).on("error", function(error){
+        message.channel.send("Sorry, I couldn't find them! Error: " + error);
+    })
+}
+
+
+function fixName(name){
+    name = name.split(" ");
+    let fullName = "";
+    //each part of the name (first ~~middle~~ last etc)
+    for (let part of name) {
+        //each char in the string
+        for(let j = 0; j<part.length; j++){
+            //capitalise first letter
+            if(j === 0){
+                fullName += part.charAt(j).toUpperCase();
+            }
+            //lowercase following letters
+            else{
+                fullName += part.charAt(j).toLowerCase();
+            }
+            part.charAt(j);
+        }
+        fullName+= " ";
+    }
+    return fullName;
 }
