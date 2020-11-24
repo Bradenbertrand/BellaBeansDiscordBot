@@ -32,9 +32,12 @@ function BellaBeansResponse(message) {
 
 
 function bellaSelfEdit(message) {
+    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
     if (message.content.toLowerCase() === 'b!motto') {
         message.channel.send('Bella').then((sentMessage) => {
+            await sleep(1000);
             sentMessage.edit("Beans").then(sentMessage => {
+                await sleep(1000);
                 sentMessage.edit("Bonstruction");
             });
         });
