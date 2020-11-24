@@ -1,3 +1,5 @@
+BellaBeansDiscordBot
+=======
 <h1>Bella Beans Discord Bot</h1>
 
 <h2>Dependencies</h2>
@@ -10,4 +12,5 @@
 - <b>Make sure depencencies are installed</b></br>
 - <b>Make sure bot token is in .env file</b></br>
 - <b>use "npm run start" or "npm run dev" in project directory</b></br>
+
 
