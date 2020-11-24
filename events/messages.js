@@ -54,11 +54,11 @@ async function bellaSelfEdit(message, channel) {
     //Send "bella"
     channel.send(':b:ella').then(async(sentMessage) => {
         //Wait 1 second
-        await sleep(1222);
+        await sleep(900);
         //Edit the message to "Beans"
         sentMessage.edit(":b:ella :b:eans").then(async(sentMessage) => {
             //Wait 1 second
-            await sleep(1222);
+            await sleep(900);
             //Edit the message to "Bonstruction"
             sentMessage.edit(":b:ella :b:eans :b:onstruction");
         });
