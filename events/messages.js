@@ -28,11 +28,11 @@ module.exports = {
 // 
 function BellaBeansResponse(message, channel) {
     // If the message is "bella"
-    if (message === 'b!bella') {
+    if (message === 'bella') {
         // Send "Beans" to the same channel
-        channel.send(' ```css BELLA ``` ');
+        channel.send('Beans');
         // If the message is 'beans'
-    } else if (message === 'b!beans') {
+    } else if (message === 'beans') {
         channel.send('Bonstruction');
     } else {
         // Do Nothing
