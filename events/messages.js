@@ -13,8 +13,7 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        if (messageText.substring(0, 5) === "bella" || "beans") {
-            console.log("First Response")
+        if (messageText.substring(0, 5) === "bella" || "bella beans") {
             BellaBeansResponse(message);
         } else if (messageText.includes("bbbot", 0)) {
             console.log("Heard My Name");
@@ -30,12 +29,10 @@ module.exports = {
 // 
 function BellaBeansResponse(message) {
     // If the message is "bella"
-    if (message.content.toLowerCase() === 'bella') {
-        // Send "Beans" to the same channel
-        message.channel.send('Beans');
+    if (message.content.toLowerCase() === 'bella' || 'bella beans' || "bella beans bot") {
+        // Send "I heard my name!" to the same channel
+        message.channel.send('I heard my name!');
         // If the message is 'beans'
-    } else if (message.content.toLowerCase() === 'beans') {
-        message.channel.send('Bonstruction');
     } else if (message.content.toLowerCase().startsWith("bella who is")) {
         console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
