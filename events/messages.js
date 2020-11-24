@@ -30,9 +30,9 @@ function BellaBeansResponse(message) {
     }
 }
 
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 async function bellaSelfEdit(message) {
-    const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
     if (message.content.toLowerCase() === 'b!motto') {
         message.channel.send('Bella').then((sentMessage) => {
             await sleep(1000);
