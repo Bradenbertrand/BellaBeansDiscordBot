@@ -40,7 +40,7 @@ function BellaBeansResponse(message, channel) {
         // If the message is 'beans'
     } else if (message.content.toLowerCase() === 'beans') {
         channel.send('Bonstruction');
-    } else if (message.content.toLowerCase().startsWith("who is")) {
+    } else if (message.content.toLowerCase().startsWith("bella who is")) {
         console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
     } else {
