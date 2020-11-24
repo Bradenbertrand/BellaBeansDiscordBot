@@ -5,6 +5,7 @@
 //If function is not triggered by the message, should return false.
 
 require("../src/bot");
+const https = require('https');
 
 module.exports = {
     messageHandler: function messageHandler(message) {
