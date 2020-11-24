@@ -112,7 +112,9 @@ function findPerson(message, command) {
             about = about.split(". ");
             let res = about[0] + ".\n\n" + about[1] + ".";
             //why tf doesn't this work? it says res is undefined???
-            // console.log(String(res));
+            if (res === undefined) {
+                message.channel.send("Sorry, I couldn't find them!")
+            }
             message.channel.send(res);
         });
     }).on("error", function(error) {
