@@ -41,6 +41,7 @@ function BellaBeansResponse(message, channel) {
     } else if (message.content.toLowerCase() === 'beans') {
         channel.send('Bonstruction');
     } else if (message.content.toLowerCase().startsWith("who is")) {
+        console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
     } else {
         // Do Nothing
@@ -87,6 +88,7 @@ function parseCommand(message) {
     //find out more about a person
     // console.log(command);
     if (command.toLowerCase().startsWith("who is")) {
+        console.log("sending to find person");
         findPerson(message, command);
     }
 }
@@ -94,7 +96,7 @@ function parseCommand(message) {
 function findPerson(message, command) {
     //probably bad practice to just count out how long the command is lol
     let person = fixName(command.substring(7));
-    // console.log(person);
+    console.log(person);
 
     //wikipedia json formatted data
     let url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + person;
