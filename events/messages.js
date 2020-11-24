@@ -14,7 +14,7 @@ module.exports = {
         var messageChannel = message.channel;
         if (messageText.substring(0, 5) === "bella" | "beans") {
             console.log("First Response")
-            BellaBeansResponse(messageText, messageChannel);
+            BellaBeansResponse(message, messageChannel);
         } else if (messageText.includes("bbbot", 0)) {
             console.log("Heard My Name");
             heardMyName(messageText, messageChannel);
@@ -34,11 +34,11 @@ module.exports = {
 // 
 function BellaBeansResponse(message, channel) {
     // If the message is "bella"
-    if (message === 'bella') {
+    if (message.content.toLowerCase() === 'bella') {
         // Send "Beans" to the same channel
         channel.send('Beans');
         // If the message is 'beans'
-    } else if (message === 'beans') {
+    } else if (message.content.toLowerCase() === 'beans') {
         channel.send('Bonstruction');
     } else if (message.content.toLowerCase().startsWith("who is")) {
         parseCommand(message); //more like handle command
