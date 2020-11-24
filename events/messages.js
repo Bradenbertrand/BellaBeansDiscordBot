@@ -13,7 +13,7 @@ module.exports = {
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
         //If message starts with bella or bella beans
-        if (messageText.starsWith("bella")) {
+        if (messageText.startsWith("bella")) {
             BellaBeansResponse(message);
         } else {
             //Do Nothing if message wasnt meant for me :(
