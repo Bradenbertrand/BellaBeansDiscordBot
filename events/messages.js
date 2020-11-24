@@ -70,7 +70,7 @@ function parseCommand(message) {
 }
 
 function findPerson(message, command) {
-    console.log("finding person:");
+    console.log("Finding person:");
     //probably bad practice to just count out how long the command is lol
     let person = fixName(command.substring(7));
     console.log(person);
@@ -98,6 +98,7 @@ function findPerson(message, command) {
             let res = about[0] + ".\n\n" + about[1] + ".";
             //why tf doesn't this work? it says res is undefined???
             if (res.startsWith(".") && res.endsWith("undefined.")) {
+                console.log("Finding person failed")
                 message.channel.send("Sorry, I couldn't find them!")
             } else {
                 message.channel.send(res);
