@@ -66,6 +66,9 @@ function parseCommand(message) {
     let command = message.content.toLowerCase().substring(6);
     //find out more about a person
     // console.log(command);
+    if (message.content.toLowerCase() == "bella who is") {
+        message.channel.send("Enter the name of the person you'd like me to search up")
+    }
     if (command.toLowerCase().startsWith("who is")) {
         findPerson(message, command);
     }
