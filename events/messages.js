@@ -5,7 +5,9 @@
 //If function is not triggered by the message, should return false.
 module.exports = {
     messageHandler: function messageHandler(message) {
-        BellaBeansResponse(message)
+        BellaBeansResponse(message);
+        bellaSelfEdit(message);
+
     }
 }
 
@@ -22,5 +24,16 @@ function BellaBeansResponse(message) {
     } else {
         // Returns false
         return (false)
+    }
+}
+
+
+function BellaSelfEdit(message) {
+    if (message.content.toLowerCase() === '!motto') {
+        message.channel.send('Bella').then((sentMessage) => {
+            sentMessage.edit("Beans").then(sentMessage => {
+                sentMessage.edit("Bonstruction");
+            });
+        });
     }
 }
