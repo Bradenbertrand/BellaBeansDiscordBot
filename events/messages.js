@@ -8,8 +8,16 @@ require("../src/bot");
 
 module.exports = {
     messageHandler: function messageHandler(message) {
-        BellaBeansResponse(message);
-        bellaSelfEdit(message);
+        //Logs first two characters of every message
+        console.log("First two characters of message = " + message.content.substring(0, 2));
+        //Conditional statements to determine if message was meant for bot
+        if (message.content.toLowerCase().substring(0, 2) === "b!" || message.content.includes("BBBot", 0) && message.author.id !== client.user.id) {
+            console.log("This message is for the bot!")
+            BellaBeansResponse(message);
+            bellaSelfEdit(message);
+        } else {
+            //Do Nothing if message wasnt meant for me :(
+        }
 
     }
 }
@@ -30,14 +38,21 @@ function BellaBeansResponse(message) {
     }
 }
 
+// Sleep function for async delay
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 async function bellaSelfEdit(message) {
+    //If function is called
     if (message.content.toLowerCase() === 'b!motto') {
+        //Send "bella"
         message.channel.send('Bella').then(async(sentMessage) => {
+            //Wait 1 second
             await sleep(1000);
+            //Edit the message to "Beans"
             sentMessage.edit("Beans").then(async(sentMessage) => {
+                //Wait 1 second
                 await sleep(1000);
+                //Edit the message to "Bonstruction"
                 sentMessage.edit("Bonstruction");
             });
         });

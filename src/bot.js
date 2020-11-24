@@ -19,10 +19,9 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
-    console.log("First two characters of message = " + message.content.substring(0, 2));
-    if (message.content.substring(0, 2) === "b!" && message.author.id !== client.user.id)
-        console.log("This message is for the bot!")
     messages.messageHandler(message);
 });
+
+
 
 client.login(process.env.BBBOT_TOKEN);
