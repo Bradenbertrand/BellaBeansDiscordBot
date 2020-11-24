@@ -12,13 +12,12 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        if (messageText.substring(0, 2) === "b!" || messageText.includes("bbbot", 0)) {
-            console.log(messageText);
-            console.log("This message is for the bot!");
+        if (messageText.substring(0, 2) === "bella" | "beans") {
+            BellaBeansResponse(messageText);
+        } else if (messageText.includes("bbbot", 0)) {
+            heardMyName(messageText);
+        } else if (messageText.substring(0, 6) == "who is") {
             parseCommand(message);
-            BellaBeansResponse(messageText, messageChannel);
-            bellaSelfEdit(messageText, messageChannel);
-            heardMyName(messageText, messageChannel);
         } else {
             //Do Nothing if message wasnt meant for me :(
         }
