@@ -16,7 +16,7 @@ module.exports = {
             console.log("This message is for the bot!");
             BellaBeansResponse(messageText, messageChannel);
             bellaSelfEdit(messageText, messageChannel);
-            heardMyName(messageText, channel)
+            heardMyName(messageText, messagechannel);
         } else {
             //Do Nothing if message wasnt meant for me :(
         }
