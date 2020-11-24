@@ -48,24 +48,20 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 // Sends a message, then edits itself to write out BBB
 async function bellaSelfEdit(message, channel) {
-    //If function is called
-    if (message === 'b!motto') {
-        //Send "bella"
-        channel.send('Bella').then(async(sentMessage) => {
+    //Send "bella"
+    channel.send('Bella').then(async(sentMessage) => {
+        //Wait 1 second
+        await sleep(1222);
+        //Edit the message to "Beans"
+        sentMessage.edit("Beans").then(async(sentMessage) => {
             //Wait 1 second
             await sleep(1222);
-            //Edit the message to "Beans"
-            sentMessage.edit("Beans").then(async(sentMessage) => {
-                //Wait 1 second
-                await sleep(1222);
-                //Edit the message to "Bonstruction"
-                sentMessage.edit("Bonstruction");
-            });
+            //Edit the message to "Bonstruction"
+            sentMessage.edit("Bonstruction");
         });
-    } else {
-        //Do nothing
-    }
+    });
 }
+
 
 // Will trigger if the message contains bbbot
 function heardMyName(message, channel) {
