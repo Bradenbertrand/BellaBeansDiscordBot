@@ -36,6 +36,8 @@ function BellaBeansResponse(message) {
         bellaSelfEdit(message.content.toLowerCase(), message.channel);
     } else if (message.content.toLowerCase().startsWith("bella help")) {
         message.channel.send("Here are the possible commands \n Bella Help \n Bella who is (person) \n Bella Motto")
+    } else {
+        message.channel.send("I dont know that command! type Bella Help for a list of commands.")
     }
 }
 
