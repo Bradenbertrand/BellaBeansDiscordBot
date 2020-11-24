@@ -28,7 +28,7 @@ function BellaBeansResponse(message) {
 }
 
 
-function BellaSelfEdit(message) {
+function bellaSelfEdit(message) {
     if (message.content.toLowerCase() === '!motto') {
         message.channel.send('Bella').then((sentMessage) => {
             sentMessage.edit("Beans").then(sentMessage => {
