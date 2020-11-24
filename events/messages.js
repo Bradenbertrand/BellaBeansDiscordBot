@@ -13,10 +13,15 @@ module.exports = {
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
         if (messageText.substring(0, 2) === "bella" | "beans") {
-            BellaBeansResponse(messageText);
+            console.log("First Response")
+            BellaBeansResponse(messageText, messageChannel);
         } else if (messageText.includes("bbbot", 0)) {
-            heardMyName(messageText);
-        } else if (messageText.substring(0, 6) == "who is") {
+            console.log("Heard My Name");
+            heardMyName(messageText, messageChannel);
+        } else if (messageText === "motto") {
+            bellaSelfEdit(messageText, messageChannel);
+        } else if (messageText.startsWith("who is")) {
+            console.log('who is')
             parseCommand(message);
         } else {
             //Do Nothing if message wasnt meant for me :(
@@ -35,7 +40,7 @@ function BellaBeansResponse(message, channel) {
         // If the message is 'beans'
     } else if (message === 'beans') {
         channel.send('Bonstruction');
-    } else if (message.content.toLowerCase().startsWith("bella")) {
+    } else if (message.content.toLowerCase().startsWith("who is")) {
         parseCommand(message); //more like handle command
     } else {
         // Do Nothing
