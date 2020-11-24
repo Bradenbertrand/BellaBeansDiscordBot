@@ -14,15 +14,10 @@ module.exports = {
         var messageChannel = message.channel;
         if (messageText.substring(0, 5) === "bella" | "beans") {
             console.log("First Response")
-            BellaBeansResponse(message, messageChannel);
+            BellaBeansResponse(message);
         } else if (messageText.includes("bbbot", 0)) {
             console.log("Heard My Name");
             heardMyName(messageText, messageChannel);
-        } else if (messageText === "motto") {
-            bellaSelfEdit(messageText, messageChannel);
-        } else if (messageText.startsWith("who is")) {
-            console.log('who is')
-            parseCommand(message);
         } else {
             //Do Nothing if message wasnt meant for me :(
         }
@@ -32,19 +27,19 @@ module.exports = {
 
 
 // 
-function BellaBeansResponse(message, channel) {
+function BellaBeansResponse(message) {
     // If the message is "bella"
     if (message.content.toLowerCase() === 'bella') {
         // Send "Beans" to the same channel
-        channel.send('Beans');
+        message.channel.send('Beans');
         // If the message is 'beans'
     } else if (message.content.toLowerCase() === 'beans') {
-        channel.send('Bonstruction');
+        message.channel.send('Bonstruction');
     } else if (message.content.toLowerCase().startsWith("bella who is")) {
         console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
-    } else {
-        // Do Nothing
+    } else if (message.content.toLowerCase.substring(5) === 'motto') {
+        bellaSelfEdit(message.content.toLowerCase(), message.channel);
     }
 }
 
@@ -74,12 +69,10 @@ async function bellaSelfEdit(message, channel) {
 
 // Will trigger if the message contains bbbot
 function heardMyName(message, channel) {
-    //If message contains bbbot
-    if (message.includes("bbbot", 0)) {
-        //send "I heard my name" to the same channel
-        channel.send("I heard my name!");
-    }
+    //send "I heard my name" to the same channel
+    channel.send("I heard my name!");
 }
+
 
 
 //
