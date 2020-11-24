@@ -7,6 +7,7 @@
 require("../src/bot");
 const https = require('https');
 
+
 module.exports = {
     messageHandler: function messageHandler(message) {
         //Conditional statements to determine if message was meant for bot
@@ -53,11 +54,11 @@ async function bellaSelfEdit(message, channel) {
         //Wait 1 second
         await sleep(1222);
         //Edit the message to "Beans"
-        sentMessage.edit("Beans").then(async(sentMessage) => {
+        sentMessage.edit("Bella Beans").then(async(sentMessage) => {
             //Wait 1 second
             await sleep(1222);
             //Edit the message to "Bonstruction"
-            sentMessage.edit("Bonstruction");
+            sentMessage.edit("Bella Beans Bonstruction");
         });
     });
 }

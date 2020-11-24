@@ -14,7 +14,7 @@ const client = new Client();
  * received from Discord
  */
 client.on('ready', () => {
-    console.log('Im starting!');
+    console.log('Ive Started!');
 });
 
 // Create an event listener for messages
