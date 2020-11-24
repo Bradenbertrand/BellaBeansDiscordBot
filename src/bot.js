@@ -19,7 +19,8 @@ client.on('ready', () => {
 
 // Create an event listener for messages
 client.on('message', message => {
-    messages.messageHandler(message);
+    if (message.content.substring(0, 2) === "b!")
+        messages.messageHandler(message);
 });
 
 client.login(process.env.BBBOT_TOKEN);
