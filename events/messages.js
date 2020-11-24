@@ -26,7 +26,7 @@ module.exports = {
 // 
 function BellaBeansResponse(message) {
     // If the message is "bella"
-    if (message.content.toLowerCase() === 'bella' || 'bella beans' || "bella beans bot") {
+    if (message.content.toLowerCase() === 'bella') {
         // Send "I heard my name!" to the same channel
         message.channel.send('I heard my name!');
         // If the message is 'beans'
