@@ -38,7 +38,7 @@ function BellaBeansResponse(message) {
     } else if (message.content.toLowerCase().startsWith("bella who is")) {
         console.log('sending to parseCommand');
         parseCommand(message); //more like handle command
-    } else if (message.content.toLowerCase.substring(5) === 'motto') {
+    } else if (message.content.toLowerCase().substring(5) === 'motto') {
         bellaSelfEdit(message.content.toLowerCase(), message.channel);
     }
 }
