@@ -12,7 +12,7 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        if (messageText.substring(0, 2) === "bella" | "beans") {
+        if (messageText.substring(0, 5) === "bella" | "beans") {
             console.log("First Response")
             BellaBeansResponse(messageText, messageChannel);
         } else if (messageText.includes("bbbot", 0)) {
