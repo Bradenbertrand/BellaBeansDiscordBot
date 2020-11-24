@@ -3,6 +3,9 @@
 //This module is exported to bot.js
 //All message response related functions should be run from the messageHandler function
 //If function is not triggered by the message, should return false.
+
+require("../src/bot");
+
 module.exports = {
     messageHandler: function messageHandler(message) {
         BellaBeansResponse(message);
