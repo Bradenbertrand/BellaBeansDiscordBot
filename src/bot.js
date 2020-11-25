@@ -14,12 +14,16 @@ const client = new Client();
  * received from Discord
  */
 client.on('ready', () => {
-    console.log('Im starting!');
+    console.log('Ive Started!');
 });
 
 // Create an event listener for messages
 client.on('message', message => {
-    messages.messageHandler(message);
+    if (message.author.id !== client.user.id) {
+        messages.messageHandler(message);
+    }
 });
+
+
 
 client.login(process.env.BBBOT_TOKEN);
