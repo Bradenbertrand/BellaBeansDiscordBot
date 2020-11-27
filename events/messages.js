@@ -12,7 +12,8 @@ module.exports = {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
-        //Scrape for emojis from message
+        console.log(message.content);
+        //Scrape for emojis from message, puts them in an array
         var emojis = message.content.match(/<:.+?:\d+>/g);
         //if there was an emoji in the message
         if (emojis != null) {

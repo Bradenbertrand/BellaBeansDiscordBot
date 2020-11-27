@@ -21,15 +21,16 @@ module.exports = {
         con.query(sql, function (err, result) {
           if (err) throw err;
           console.log('Updated ' + emojiRaw + " timesUsed")
+        
         });
       }
   },
   getEmojiLeaderboard: function getEmojiLeaderboard(message) {
-    var sql = "SELECT emoji, timesUsed FROM emojiCounter ORDER BY timesUsed DESC LIMIT 10";
+    var sql = "SELECT emoji, timesUsed FROM emojiCounter ORDER BY timesUsed DESC LIMIT 5";
     con.query(sql, function (err, result, fields) {
       if (err) throw err;
       var string = JSON.parse(JSON.stringify(result));
-      leaderboardReply = "Here are the top 10 most used emojis:\n"
+      leaderboardReply = "Here are the top 5 most used emojis:\n"
       +string[0].emoji+" : "+string[0].timesUsed+"\n"
       +string[1].emoji+": "+string[1].timesUsed+"\n"
       +string[2].emoji+": "+string[2].timesUsed+"\n"
