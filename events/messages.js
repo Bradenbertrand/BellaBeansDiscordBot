@@ -5,13 +5,19 @@
 
 require("../src/bot");
 const https = require('https');
-
+const emojiDBUpdates = require('./EmojiDBUpdates');
 
 module.exports = {
     messageHandler: function messageHandler(message) {
         //Conditional statements to determine if message was meant for bot
         var messageText = message.content.toLowerCase();
         var messageChannel = message.channel;
+        //Scrape for emojis from message
+        var emojis = message.content.match(/<:.+?:\d+>/g);
+        //if there was an emoji in the message
+        if (emojis != null) {
+            emojiDBUpdates.emojiParser(emojis);
+        }
         //If message starts with bella or bella beans
         if (messageText.startsWith("bella")) {
             BellaBeansResponse(message);
@@ -35,7 +41,9 @@ function BellaBeansResponse(message) {
     } else if (message.content.toLowerCase().startsWith("bella motto")) {
         bellaSelfEdit(message.content.toLowerCase(), message.channel);
     } else if (message.content.toLowerCase().startsWith("bella help")) {
-        message.channel.send("Here are the possible commands \n Bella Help \n Bella who is (person) \n Bella Motto")
+        message.channel.send("Here are the possible commands\nBella Help\nBella who is (person)\nBella Motto\nBella Leaderboard")
+    } else if (message.content.toLowerCase().startsWith("bella leaderboard")) {
+        emojiDBUpdates.getEmojiLeaderboard(message);
     } else {
         message.channel.send("I dont know that command! type Bella Help for a list of commands.")
     }
@@ -46,7 +54,6 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 // Sends a message, then edits itself to write out BBB
 async function bellaSelfEdit(message, channel) {
-    console.log("Bella Beans Motto");
     //Send "bella"
     channel.send(':b:ella').then(async(sentMessage) => {
         //Wait 1 second
