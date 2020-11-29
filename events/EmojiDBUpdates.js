@@ -15,6 +15,17 @@ module.exports = {
   emojiParser: function emojiParser(emojis) {
       //Conditional statements to determine if message was meant for bot
       console.log(emojis)
+      //Insert emoji into DB if does not exist
+      for (let i = 0; i < emojis.length; i++) {
+        var emojiRaw = emojis[i].slice(emojis[i].indexOf(':')+1, emojis[i].lastIndexOf(':'));
+        var sql = "INSERT IGNORE INTO emojiCounter (emoji, timesUsed) VALUES ('" + emojiRaw + "', 0)";
+        con.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log('Inserted new emoji to DB');
+        });
+      }
+
+
       for (let i = 0; i < emojis.length;  i++) {
         var emojiRaw = emojis[i].slice(emojis[i].indexOf(':')+1, emojis[i].lastIndexOf(':'))
         var sql = "UPDATE emojiCounter SET timesUsed = timesUsed+1 WHERE emoji='" + emojiRaw + "'" ;
