@@ -45,6 +45,8 @@ function BellaBeansResponse(message) {
         message.channel.send("Here are the possible commands\nBella Help\nBella who is (person)\nBella Motto\nBella Leaderboard")
     } else if (message.content.toLowerCase().startsWith("bella leaderboard")) {
         emojiDBUpdates.getEmojiLeaderboard(message);
+    } else if(message.content.toLowerCase().startsWith("bella purge")){
+        purge(message);
     } else {
         message.channel.send("I dont know that command! type Bella Help for a list of commands.")
     }
@@ -144,4 +146,36 @@ function fixName(name) {
         fullName += " ";
     }
     return fullName;
+}
+
+function purge(message){
+    let args = message.content.split(" ").slice(2);
+    let amount;
+
+    console.log("Command is purge.");
+    console.log("Arguments: [" + args + "]");
+
+    // Checking for valid # of arguments
+    if(args.length > 1){
+        message.channel.send(":flushed: Invalid invoke of purge command! :flushed:\n**TRY** `bella purge (# of messages to purge)`");
+        return;
+    }
+
+    // Checking for valid arguments.
+    if(args.length === 0){
+        amount == 1;
+    } else if(isNaN(args[0]) || Number(args[0]) < 0){
+        message.channel.send(":flushed: Invalid invoke of purge command! Feed me positive integers pwease! :flushed:\n**TRY** `bella purge (# of messages to purge)`");
+        return;
+    } else {
+        amount = Number(args[0]);
+    }
+
+    // Checking for # of messages to delete.
+    if(amount > 100){
+        message.channel.send(":flushed: Invalid invoke of purge command! I canz only delete 100 messages at a time! :flushed:\n**TRY** `bella purge (# of messages to purge)`");
+        return;
+    }
+
+    message.channel.bulkDelete(amount + 1);
 }
