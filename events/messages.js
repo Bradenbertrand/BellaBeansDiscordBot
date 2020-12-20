@@ -163,7 +163,7 @@ function purge(message){
 
     // Checking for valid arguments.
     if(args.length === 0){
-        amount == 1;
+        amount = 1;
     } else if(isNaN(args[0]) || Number(args[0]) < 0){
         message.channel.send(":flushed: Invalid invoke of purge command! Feed me positive integers pwease! :flushed:\n**TRY** `bella purge (# of messages to purge)`");
         return;
