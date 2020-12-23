@@ -46,6 +46,8 @@ function BellaBeansResponse(message) {
         emojiDBUpdates.getEmojiLeaderboard(message);
     } else if(message.content.toLowerCase().startsWith("bella purge")){
         purge(message);
+    } else if(message.content.toLowerCase().startsWith("bella react")){
+        react(message);
     } else {
         message.channel.send("I dont know that command! type Bella Help for a list of commands.")
     }
@@ -180,4 +182,58 @@ function purge(message){
 
     message.channel.bulkDelete(amount + 1)
         .catch(console.error);
+}
+
+function react(message){
+    let args = message.content.split(" ").slice(2);
+
+    console.log("Message: " + message.content);
+    console.log("Arguments: [" + args + "]");
+
+    // Validate arguments
+    if(args.length > 1){
+        message.channel.send(":flushed: Invalid invoke of react command! :flushed:\n**TRY** `bella react (word to react with)`");
+        return;
+    } else if (args.length === 0){
+        message.channel.send(":flushed: Invalid invoke of react command! :flushed:\n**TRY** `bella react (word to react with)`");
+        return;
+    }
+
+    let string = args[0];
+    let rc = isHeterogram(string);
+
+    if(rc){
+        message.channel.send("The word `" + string + "` is a heterogram!");
+        return;
+    } else {
+        message.channel.send("The word `" + string + "` is NOT a heterogram!");
+        return;
+    }
+    
+}
+
+// Helper function for determining if a string is a heterogram
+// Heterogram is a word which each character in the word only appears once
+// Returns True if string is a heterogram, and False otherwise.
+function isHeterogram(string){
+    let stringFreq = {};
+
+    for(let i = 0; i < string.length; i++){
+        if(stringFreq.hasOwnProperty(string.charAt(i))){
+            stringFreq[string.charAt(i)]++;
+        } else {
+            stringFreq[string.charAt(i)] = 1;
+        }
+    }
+
+    console.log(stringFreq);
+
+    for(let char in stringFreq){
+        console.log("Key: " + char + " | Value: " + stringFreq[char]);
+        if(stringFreq[char] > 1){
+            console.log("Current Character has more than 1 appearance in the word.");
+            return false;
+        }
+    }
+    return true;
 }
