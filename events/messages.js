@@ -204,12 +204,43 @@ function react(message){
 
     if(rc){
         message.channel.send("The word `" + string + "` is a heterogram!");
-        return;
+
+        let msg = fetchMessage(message.channel, 2);
+        // console.log(msg);
+
     } else {
         message.channel.send("The word `" + string + "` is NOT a heterogram!");
         return;
     }
     
+}
+
+function fetchMessage(channel, num_msgs_to_fetch){
+
+    console.log("In fetch messages. Trying to fetch: " + num_msgs_to_fetch + " most recent messages");
+
+    const fetched_msgs = channel.messages.fetch({ limit: num_msgs_to_fetch }).resolve();
+    console.log(fetched_msgs);
+
+    // let fetched_arr = fetched_msgs.array();
+    // console.log(fetched_arr);
+    
+    // let msg_to_react_to = fetched_arr[fetched_arr.length - 1];
+    // console.log(msg_to_react_to);
+    // return msg_to_react_to;
+
+    // Fetches the specifiied # of most recent messages sent to a text channel
+    // let msg = channel.messages.fetch({ limit : num_msgs_to_fetch}).then(messages => {
+    //     let fetched_msgs = messages.array();
+    //     // console.log("Fetched the " + num_msgs_to_fetch + " most recent messages");
+    //     // console.log(fetched_msgs);
+
+    //     let react_to_msg = fetched_msgs[fetched_msgs.length -1];// Represents the message that needs to be reacted to.
+    //     // console.log(react_to_msg);
+    //     return react_to_msg
+    // });
+
+    // console.log(msg);
 }
 
 // Helper function for determining if a string is a heterogram
@@ -220,20 +251,12 @@ function isHeterogram(string){
 
     for(let i = 0; i < string.length; i++){
         if(stringFreq.hasOwnProperty(string.charAt(i))){
-            stringFreq[string.charAt(i)]++;
+            return false;
         } else {
             stringFreq[string.charAt(i)] = 1;
         }
     }
 
     console.log(stringFreq);
-
-    for(let char in stringFreq){
-        console.log("Key: " + char + " | Value: " + stringFreq[char]);
-        if(stringFreq[char] > 1){
-            console.log("Current Character has more than 1 appearance in the word.");
-            return false;
-        }
-    }
     return true;
 }
