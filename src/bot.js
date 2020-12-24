@@ -9,7 +9,6 @@ const messages = require("../events/messages");
 // Create an instance of a Discord client
 const client = new Client();
 
-// Test
 // //Auth for database
 // var con = mysql.createConnection({
 //     host: process.env.DB_HOST,
