@@ -5,7 +5,7 @@ function execute(message, args){
     let fullName = fixName(args.slice(1));
     findPerson(message, fullName);
 }
-
+//test sorry
 function findPerson(message, fullName) {
 
     //wikipedia json formatted data
