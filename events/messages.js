@@ -184,7 +184,7 @@ function purge(message){
         .catch(console.error);
 }
 
-function react(message){
+async function react(message){
     let args = message.content.split(" ").slice(2);
 
     console.log("Message: " + message.content);
@@ -203,10 +203,31 @@ function react(message){
     let rc = isHeterogram(string);
 
     if(rc){
-        message.channel.send("The word `" + string + "` is a heterogram!");
+        // message.channel.send("The word `" + string + "` is a heterogram!");
 
-        let msg = fetchMessage(message.channel, 2);
+        // let msg = fetchMessage(message.channel, 2);
         // console.log(msg);
+
+        const fetched_msgs = await message.channel.messages.fetch({ limit: 2});
+
+        let fetched_arr = fetched_msgs.array();
+
+        let msg_to_react_to = fetched_arr[fetched_arr.length - 1];
+
+        // console.log(msg_to_react_to);
+        
+        // for(let char in string){
+        //     let emojiName = "regional_indicator_" + string[char];
+        //     let reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === emojiName);
+        //     msg_to_react_to.react(reactionEmoji);
+        // }
+        
+        let emoji = message.guild.emojis.cache.find("name", "smile");
+        console.log(emoji);
+
+        // addReactions(string, msg_to_react_to);
+
+        return;
 
     } else {
         message.channel.send("The word `" + string + "` is NOT a heterogram!");
@@ -215,32 +236,14 @@ function react(message){
     
 }
 
-function fetchMessage(channel, num_msgs_to_fetch){
+function addReactions(string, msg){
 
-    console.log("In fetch messages. Trying to fetch: " + num_msgs_to_fetch + " most recent messages");
-
-    const fetched_msgs = channel.messages.fetch({ limit: num_msgs_to_fetch }).resolve();
-    console.log(fetched_msgs);
-
-    // let fetched_arr = fetched_msgs.array();
-    // console.log(fetched_arr);
-    
-    // let msg_to_react_to = fetched_arr[fetched_arr.length - 1];
-    // console.log(msg_to_react_to);
-    // return msg_to_react_to;
-
-    // Fetches the specifiied # of most recent messages sent to a text channel
-    // let msg = channel.messages.fetch({ limit : num_msgs_to_fetch}).then(messages => {
-    //     let fetched_msgs = messages.array();
-    //     // console.log("Fetched the " + num_msgs_to_fetch + " most recent messages");
-    //     // console.log(fetched_msgs);
-
-    //     let react_to_msg = fetched_msgs[fetched_msgs.length -1];// Represents the message that needs to be reacted to.
-    //     // console.log(react_to_msg);
-    //     return react_to_msg
-    // });
-
-    // console.log(msg);
+    for(let char in string){
+        let emojiName = ":regional_indicator_" + string[char] + ":";
+        let reaction_emoji = msg.guild.emojis.cache.find(emoji => emoji.name === emojiName);
+        // msg.react(reaction_emoji);
+        msg.channel.send(reaction_emoji);
+    }
 }
 
 // Helper function for determining if a string is a heterogram
@@ -250,7 +253,7 @@ function isHeterogram(string){
     let stringFreq = {};
 
     for(let i = 0; i < string.length; i++){
-        if(stringFreq.hasOwnProperty(string.charAt(i))){
+        if(stringFreq.hasOwnProperty(string.charAt(i)) || !isNaN(string.charAt(i))){
             return false;
         } else {
             stringFreq[string.charAt(i)] = 1;
