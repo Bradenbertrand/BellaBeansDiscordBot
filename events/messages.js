@@ -200,13 +200,9 @@ async function react(message){
     }
 
     let string = args[0];
-    let rc = isHeterogram(string);
 
-    if(rc){
+    if(isHeterogram(string)){
         // message.channel.send("The word `" + string + "` is a heterogram!");
-
-        // let msg = fetchMessage(message.channel, 2);
-        // console.log(msg);
 
         const fetched_msgs = await message.channel.messages.fetch({ limit: 2});
 
@@ -214,18 +210,7 @@ async function react(message){
 
         let msg_to_react_to = fetched_arr[fetched_arr.length - 1];
 
-        // console.log(msg_to_react_to);
-        
-        // for(let char in string){
-        //     let emojiName = "regional_indicator_" + string[char];
-        //     let reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === emojiName);
-        //     msg_to_react_to.react(reactionEmoji);
-        // }
-        
-        let emoji = message.guild.emojis.cache.find("name", "smile");
-        console.log(emoji);
-
-        // addReactions(string, msg_to_react_to);
+        addReactions(string, msg_to_react_to)
 
         return;
 
@@ -238,12 +223,45 @@ async function react(message){
 
 function addReactions(string, msg){
 
+    let unicodeMap = {};
+    initUnicodeMap(unicodeMap);
+    console.log(unicodeMap);
+
     for(let char in string){
-        let emojiName = ":regional_indicator_" + string[char] + ":";
-        let reaction_emoji = msg.guild.emojis.cache.find(emoji => emoji.name === emojiName);
-        // msg.react(reaction_emoji);
-        msg.channel.send(reaction_emoji);
+        console.log(unicodeMap[string[char]]);
+        msg.react(unicodeMap[string[char]]);
     }
+
+}
+
+function initUnicodeMap(unicodeMap){
+    unicodeMap['a'] = '🇦';
+    unicodeMap['b'] = '🇧';
+    unicodeMap['c'] = '🇨';
+    unicodeMap['d'] = '🇩';
+    unicodeMap['e'] = '🇪';
+    unicodeMap['f'] = '🇫';
+    unicodeMap['g'] = '🇬';
+    unicodeMap['h'] = '🇭';
+    unicodeMap['i'] = '🇮';
+    unicodeMap['j'] = '🇯';
+    unicodeMap['k'] = '🇰';
+    unicodeMap['l'] = '🇱';
+    unicodeMap['m'] = '🇲';
+    unicodeMap['n'] = '🇳';
+    unicodeMap['o'] = '🇴';
+    unicodeMap['p'] = '🇵';
+    unicodeMap['q'] = '🇶';
+    unicodeMap['r'] = '🇷';
+    unicodeMap['s'] = '🇸';
+    unicodeMap['t'] = '🇹';
+    unicodeMap['u'] = '🇺';
+    unicodeMap['v'] = '🇻';
+    unicodeMap['w'] = '🇼';
+    unicodeMap['x'] = '🇽';
+    unicodeMap['y'] = '🇾';
+    unicodeMap['z'] = '🇿';
+    
 }
 
 // Helper function for determining if a string is a heterogram
