@@ -39,12 +39,17 @@ function BellaBeansResponse(message) {
     if (message.content.startsWith(keyword)){
         const args = message.content.slice(keyword.length).trim().split(" ");
         const command = args.shift().toLowerCase();
-        try {
-            console.log(command);
-            index[command].execute(message, args);
-        } catch (error) {
-            // console.error(error);
+        let event = index[command];
+
+        if(!event){
             message.reply("I don't know how to do that!");
+            return;
+        }
+        try{
+            event.execute(message, args);
+        } catch (error) {
+            message.reply("There was an error!");
+            console.error(error);
         }
     }
 }
