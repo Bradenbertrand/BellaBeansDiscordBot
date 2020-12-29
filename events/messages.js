@@ -37,10 +37,9 @@ module.exports = {
 // 
 function BellaBeansResponse(message) {
     if (message.content.startsWith(keyword)){
-        const args = message.content.slice(keyword.length).trim().split(" ");
+        const args = message.content.slice(keyword.length).trim().split(/\s+/);
         const command = args.shift().toLowerCase();
         let event = index[command];
-
         if(!event){
             message.reply("I don't know how to do that!");
             return;
