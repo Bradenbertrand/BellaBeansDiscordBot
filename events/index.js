@@ -3,5 +3,6 @@ module.exports = {
     "who" : require("./who.js"),
     "react" : require("./react.js"),
     "purge" : require("./purge.js"),
-    "motto" : require("./motto.js")
+    "motto" : require("./motto.js"),
+    "help"  : require("./help.js")
 }
